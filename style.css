@@ -1,0 +1,22 @@
+* {
+    font-family: sans-serif;
+}
+.btn {
+    margin-bottom: 10px;
+}
+
+body {
+    background-color: #E8EDF2;
+}
+
+.jumbotron {
+    background-color: white;
+}
+
+.our-story {
+    background-color: #E8EDF2;
+}
+
+.filler {
+    color: #E8EDF2;
+}
