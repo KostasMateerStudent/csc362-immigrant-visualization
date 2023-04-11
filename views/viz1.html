@@ -6,13 +6,13 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script src="https://d3js.org/d3.v5.min.js"></script>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
   <div class="jumbotron text-center">
     <h1>Visualizing Foreign Immigrant Admissions</h1>
     <p style="text-align: center;">Kostas Mateer and Sathish Karthikeyan</p> 
-    <a href="index.html" class="btn btn-default" role="button">Go back to Main Page</a>
+    <a href="../index.html" class="btn btn-default" role="button">Go back to Main Page</a>
   </div>
 
   <div class="container">
@@ -25,7 +25,7 @@
       <div id="furtherDiscussion"></div>
     </div>
     <div class="row">
-			<a href="index.html" class="btn btn-default btn-sm" role="button">Go back to Main Page</a>
+			<a href="../index.html" class="btn btn-default btn-sm" role="button">Go back to Main Page</a>
 		</div>
   </div>
 
@@ -133,7 +133,7 @@
       .y((d) => y(d.Number));
 
     //read data
-    d3.csv("Continents.csv").then((data) => {
+    d3.csv("/data/Continents.csv").then((data) => {
       data.forEach((d) => {
         d.Year = parseTime(d.Year);
         d.Number = +d.Number;

@@ -6,13 +6,13 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script src="https://d3js.org/d3.v5.min.js"></script>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
   <div class="jumbotron text-center">
     <h1>Visualizing Foreign Immigrant Admissions</h1>
     <p style="text-align: center;">Kostas Mateer and Sathish Karthikeyan</p> 
-    <a href="index.html" class="btn btn-default" role="button">Go back to Main Page</a>
+    <a href="../index.html" class="btn btn-default" role="button">Go back to Main Page</a>
   </div>
   <div class="container">
     <div class="row">
@@ -24,7 +24,7 @@
       <div id="aboutLogChart"></div>
     </div>
     <div class="row">
-			<a href="index.html" class="btn btn-default btn-sm" role="button">Go back to Main Page</a>
+			<a href="../index.html" class="btn btn-default btn-sm" role="button">Go back to Main Page</a>
 		</div>
   </div>
 
@@ -97,7 +97,7 @@
         .append("g") //group
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      data = d3.csv("immigrationData.csv").then(data => {
+      data = d3.csv("/data/immigrationData.csv").then(data => {
         data.forEach(d =>{ //looking at each row
             //convert to correct data type
             d.Immigrants = +d.Immigrants; //convert to number
