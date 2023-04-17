@@ -1,8 +1,8 @@
-state,value
+﻿state,value
 Alabama,12258
 Alaska,4822
-Arkansas,275185
-Arizona,9301
+Arizona,275185
+Arkansas,9301
 California,226982
 Colorado,18943
 Connecticut,7802
@@ -10,45 +10,47 @@ Delaware,1821
 District of Columbia,4685
 Florida,110412
 Georgia,54852
-Hawaii,1808
-Iowa,2580
+Guam,1808
+Hawaii,2580
 Idaho,7869
 Illinois,34289
 Indiana,10672
-Kansas,7682
-Kentucky,4919
-Louisiana,13346
-Maine,21811
-Maryland,19765
-Massachusetts,9749
-Michigan,21266
-Minnesota,245337
-Missouri,12104
+Iowa,7682
+Kansas,4919
+Kentucky,13346
+Louisiana,21811
+Maine,19765
+Maryland,9749
+Massachusetts,21266
+Michigan,245337
+Minnesota,12104
 Mississippi,9492
-Montana,8863
-North Carolina,2615
-North Dakota,6399
-Nebraska,9071
+Missouri,8863
+Montana,2615
+Nebraska,6399
+Nevada,9071
 New Hampshire,2438
 New Jersey,36053
 New Mexico,8985
-Nevada,108442
-New York,39561
-Ohio,4499
-Oklahoma,23124
-Oregon,5822
-Pennsylvania,14434
-Rhode Island,21597
-South Carolina,1357
-South Dakota,1526
-Tennessee,13429
-Texas,2760
-Utah,17836
-Virginia,217048
-Vermont,6898
-Washington,5278
-Wisconsin,17200
-West Virginia,89762
-Wyoming,1429
-,
-,
+New York,108442
+North Carolina,39561
+North Dakota,4499
+Ohio,23124
+Oklahoma,5822
+Oregon,14434
+Other6,811
+Pennsylvania,21597
+Puerto Rico,1357
+Rhode Island,1526
+South Carolina,13429
+South Dakota,2760
+Tennessee,17836
+Texas,217048
+Unknown,17925
+Utah,6898
+Vermont,5278
+Virginia,17200
+Washington,89762
+West Virginia,1429
+Wisconsin,7597
+Wyoming,1433
