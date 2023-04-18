@@ -19,8 +19,9 @@
       .legend {
         position: relative;
         justify-content: left;
-        top: -525px;
-        left: 120px;
+        margin-top: -525px;
+        margin-left: 120px;
+        bottom: 450px;
       }
 
       .axis text {
@@ -50,10 +51,66 @@
     </div>
     <div class="container">
       <div class="row" id="container-chart">
-        <div id="chart"></div>
+        <div class="row">
+          <h1 id="title">
+            Which US states are nonimmigrants entering the US from?
+          </h1>
+          <h4>About Dataset Used for Choropleth:</h4>
+          <p class="larger-text">
+            Dataset is from Department of Homeland Security. It has the amount
+            of admissions by state of temporary workers and their famlies in the
+            fiscal year 2021.
+          </p>
+          <h4>Our Question:</h4>
+          <p class="larger-text">
+            Coming from the previous visualizations and data, we found out where
+            these nonimmigrants were coming from and the amount of admissions
+            over time. This led us to ask the question: where are all these
+            people entering into the US? We also hypothesized that the coastal
+            regions would be the most common entry points, and we wanted to see
+            if we are correct in that hypothesis. Another question of ours was
+            what states recieve the most immigrants, and what are legislative
+            policies in these states regarding immigrants?
+          </p>
+          <div id="chart"></div>
+          <h4>Analysis of Chart:</h4>
+          <p class="larger-text">
+            Our intital hypothesis was correct because the coastal parts of the
+            US have the most admissions: California, Florida, and all along the
+            East Coast. The ones that stood out the most were Michigan,
+            Washington, Arizona, and Texas. We wonder why Michigan and
+            Washington have a higher amount of admissions. We believe it to be
+            due to Canada because Vancouver is extremely close to Washington
+            state. For Michigan, we believe it is because of Toronto. However,
+            we wonder why Arizona and Texas have such a high level of
+            admissions. We know it is most likely due to Mexico and South
+            America, but why not New Mexico? This choropleth helps easily locate
+            large entry points, and it is important to see these, so we can
+            start asking more questions about these particular states. Do these
+            states have more opportunities for nonimmigrants? Are these states
+            more open to nonimmigrants? Do these states have increasing pressure
+            because the amount of nonimmigrants flowing into the state? Or do
+            these states just have major airports where the nonimmgrants
+            intially enter the country, then go to their own state after intial
+            entry?
+          </p>
+          <h4>Further Discussion:</h4>
+          <p class="larger-text">
+            This choropleth is a great tool to quickly find hotspots within the US when 
+            it comes to admissions. It is easy to see that California, Arizona, Michigan, Texas, 
+            Florida, New York, and Washington state have the highest level of admissions. 
+            We think there are obvious answers for most of them, but some of them are a little 
+            perplexing. It makes sense for California to have a large amount because of 
+            its proximity to Asia, and to Mexico. Same with Arizona and Texas for Mexico and 
+            South America, but why not New Mexico? One idea that we have is that New Mexico's population (2.1 million) 
+            is significantly lower than Arizona (7.3 million) and further more, Texas (29.5 million).
+          </p>
+        </div>
       </div>
       <div class="row">
-        <a href="../index.html" class="btn btn-default btn-sm" role="button">Go back to Main Page</a>
+        <a href="../index.html" class="btn btn-default btn-sm" role="button"
+          >Go back to Main Page</a
+        >
       </div>
     </div>
     <script type="text/javascript">
@@ -227,9 +284,7 @@
         .attr("text-anchor", "middle")
         .style("font-size", "20px")
         .style("text-decoration", "underline")
-        .text(
-          "# of nonimmigrant worker admissions to the US by state in 2021"
-        );
+        .text("# of Nonimmigrant Worker Admissions to the US by State in 2021");
     </script>
   </body>
 </html>

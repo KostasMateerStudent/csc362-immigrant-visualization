@@ -5,12 +5,12 @@
     margin-bottom: 10px;
 }
 
-body {
+/* body {
     background-color: #E8EDF2;
-}
+} */
 
 .jumbotron {
-    background-color: white;
+    background-color: #E8EDF2;
 }
 
 .our-story {
@@ -19,4 +19,8 @@ body {
 
 .filler {
     color: #E8EDF2;
+}
+
+.larger-text {
+    font-size: 1.5rem;
 }
