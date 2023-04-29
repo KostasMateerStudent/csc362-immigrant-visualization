@@ -1,28 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Visualizing Foreign Immigrant Admissions</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	<script src="https://d3js.org/d3.v5.min.js"></script>
-  <link rel="stylesheet" href="/style.css">
+    <title>Visualizing Foreign Immigrant Admissions</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <link rel="stylesheet" href="/style.css">
 </head>
+
 <body>
-  <div class="jumbotron text-center">
-    <h1>Visualizing Foreign Immigrant Admissions</h1>
-    <p style="text-align: center;">Kostas Mateer and Sathish Karthikeyan</p> 
-    <a href="../index.html" class="btn btn-default" role="button">Go back to Main Page</a>
-  </div>
-  <div class="container">
-    <div class="row">
-      <a href="../index.html" class="btn btn-default btn-sm" role="button"
-        >Go back to Main Page</a
-      >
+    <div class="jumbotron text-center">
+        <h1>Visualizing Foreign Immigrant Admissions</h1>
+        <p style="text-align: center;">Kostas Mateer and Sathish Karthikeyan</p>
+        <a href="../index.html" class="btn btn-default" role="button">Go back to Main Page</a>
     </div>
-  </div>
+    <div class="container">
+        <div class="row">
+            <h1 id="title"></h1>
+            <div id="chart"></div>
+        </div>
+        <div class="row">
+            <a href="../index.html" class="btn btn-default btn-sm" role="button">Go back to Main Page</a>
+        </div>
+    </div>
+
+    <style>
+        #chart {
+            display: flex;
+            justify-content: center;
+        }
+
+        .bar {
+            stroke: black
+        }
+    </style>
+
+    <script>
+        // header code
+        const title = d3.select("#title");
+        title.text("What is the distribution of gender and age of the immigrant workers?");
+
+        //setting up graph
+        var margin = { top: 40, right: 20, bottom: 50, left: 20, middle: 50 },
+            width = 600,
+            height = 320;
+
+        var w = 600,
+            h = 320;
+        // the width of each side of the chart
+        var regionWidth = w / 2 - margin.middle;
+
+        // these are the x-coordinates of the y-axes
+        var pointA = regionWidth,
+            pointB = w - regionWidth;
+
+        var svg = d3.select("#chart").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            //.attr("class", "bar-chart")
+            .append("g") //group
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        data = d3.csv("/data/genderAge.csv").then(data => {
+            data.forEach(d => { //looking at each row
+                //convert to correct data type
+                d.Age = d.Age;
+                d.Male = +d.Male;
+                d.Female = +d.Female;
+            });
+
+            var totalPopulation = d3.sum(data, function (d) { return d.Male + d.Female; }),
+                percentage = function (d) { return d / totalPopulation * 100; };
+
+            var maxValue = Math.max(
+                d3.max(data, function (d) { return percentage(d.Male); }),
+                d3.max(data, function (d) { return percentage(d.Female); })
+            );
+
+            var xScale = d3.scaleLinear()
+                .domain([0, maxValue])
+                .range([0, regionWidth])
+                .nice();
+
+            var xScaleLeft = d3.scaleLinear()
+                .domain([0, maxValue])
+                .range([regionWidth, 0]);
+
+            var xScaleRight = d3.scaleLinear()
+                .domain([0, maxValue])
+                .range([0, regionWidth]);
+
+            var yScale = d3.scaleBand()
+                .domain(data.map(function (d) { return d.Age; }))
+                .range([h, 0])
+                .padding(0.1);
+
+            var yAxisLeft = d3.axisLeft()
+                .scale(yScale)
+                .tickSize(4)
+                .tickPadding(-margin.middle + 15);
+
+            var yAxisRight = d3.axisRight()
+                .scale(yScale)
+                .tickSize(4, 0)
+                .tickPadding(-margin.middle);
+
+            var xAxisRight = d3.axisBottom()
+                .scale(xScale)
+
+            var xAxisLeft = d3.axisBottom()
+                .scale(xScale.copy().range([pointA, 0]))
+
+            // MAKE GROUPS FOR EACH SIDE OF CHART
+            // scale(-1,1) is used to reverse the left side so the bars grow left instead of right
+            var leftBarGroup = svg.append('g')
+                .attr('transform', translation(pointA, 0) + 'scale(-1,1)');
+            var rightBarGroup = svg.append('g')
+                .attr('transform', translation(pointB, 0));
+
+            // DRAW AXES
+            svg.append('g')
+                .attr('class', 'axis y left')
+                .attr('transform', translation(pointA, 0))
+                .call(yAxisLeft)
+                .selectAll('text')
+                .style('text-anchor', 'middle');
+
+            svg.append('g')
+                .attr('class', 'axis y right')
+                .attr('transform', translation(pointB, 0))
+                .call(yAxisRight);
+
+            svg.append('g')
+                .attr('class', 'axis x left')
+                .attr('transform', translation(0, h))
+                .call(xAxisLeft);
+
+            svg.append('g')
+                .attr('class', 'axis x right')
+                .attr('transform', translation(pointB, h))
+                .call(xAxisRight);
+
+            // DRAW BARS
+            leftBarGroup.selectAll('.bar.left')
+                .data(data)
+                .enter().append('rect')
+                .attr('class', 'bar left')
+                .attr('x', 0)
+                .attr('y', function (d) { return yScale(d.Age); })
+                .attr('width', function (d) { return xScale(percentage(d.Male)); })
+                .style("fill", "lightblue")
+                .attr('height', yScale.bandwidth());
+
+
+            svg.append("text")
+                .attr("x", width / 4)
+                .attr("y", 0 - margin.top / 2 + 15)
+                .attr("text-anchor", "middle")
+                .style("font-size", "20px")
+                .style("text-decoration", "underline")
+                .text("Male");
+
+            svg.append("text")
+                .attr("x", 3 * width / 4)
+                .attr("y", 0 - margin.top / 2 + 15)
+                .attr("text-anchor", "middle")
+                .style("font-size", "20px")
+                .style("text-decoration", "underline")
+                .text("Female");
+
+            svg.append("text")
+                .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.bottom - 15) + ")")
+                .style("text-anchor", "middle")
+                .text("Percent of total population");
+
+            svg.append("text")
+                .attr("transform", "translate(" + (width / 2) + " ," + (margin.top - 50) + ")")
+                .style("text-anchor", "middle")
+                .text("Age group");
+
+            rightBarGroup.selectAll('.bar.right')
+                .data(data)
+                .enter().append('rect')
+                .attr('class', 'bar right')
+                .attr('x', 0)
+                .attr('y', function (d) { return yScale(d.Age); })
+                .attr('width', function (d) { return xScale(percentage(d.Female)); })
+                .style("fill", "pink")
+                .attr('height', yScale.bandwidth());
+
+            function translation(x, y) {
+                return 'translate(' + x + ',' + y + ')';
+            }
+        });
+
+    </script>
 </body>
+
 </html>
