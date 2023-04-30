@@ -13,9 +13,12 @@
     <h1>Visualizing Foreign Immigrant Admissions</h1>
     <p style="text-align: center;">Kostas Mateer and Sathish Karthikeyan</p> 
     <a href="../index.html" class="btn btn-default" role="button">Go back to Main Page</a>
+    <a href="viz1.html" class="btn btn-default" role="button">Go to previous visualization</a>
+      <a href="viz3.html" class="btn btn-default" role="button">Go to next visualization</a>
   </div>
   <div class="container">
     <div class="row">
+      <p class="lead" style="font-size: 4rem;">Visualization 2</p>
       <h1 id="title"></h1>
       <div class="larger-text" id="aboutQuestion"></div>
       <div class="larger-text" id="chart"></div>
@@ -25,6 +28,8 @@
     </div>
     <div class="row">
 			<a href="../index.html" class="btn btn-default btn-sm" role="button">Go back to Main Page</a>
+      <a href="viz1.html" class="btn btn-default btn-sm" role="button">Go to previous visualization</a>
+      <a href="viz3.html" class="btn btn-default btn-sm" role="button">Go to next visualization</a>
 		</div>
   </div>
 
@@ -130,7 +135,7 @@
               .attr("height",  d => (height - y(d.Immigrants)))
               .style("fill", (d, i) => {return colors[i]})
               .on("mouseover", function(d, i) {
-                tooltip.html(`# of Immigrants: ${d.Immigrants}`).style("visibility", "visible");
+                tooltip.html(`# of Immigrants: ${Number(d.Immigrants).toLocaleString()}`).style("visibility", "visible");
                 svg.selectAll('rect')
                   .attr('opacity', 0.4);
                 d3.select(this)
@@ -221,7 +226,7 @@
             .attr("height",  d => (height - logY(d.Immigrants)))
             .style("fill", (d, i) => {return colors[i]})
             .on("mouseover", function(d, i) {
-                tooltip.html(`# of Immigrants: ${d.Immigrants}`).style("visibility", "visible");
+                tooltip.html(`# of Immigrants: ${Number(d.Immigrants).toLocaleString()}`).style("visibility", "visible");
                 svg_2.selectAll('rect')
                   .attr('opacity', 0.4);
                 d3.select(this)

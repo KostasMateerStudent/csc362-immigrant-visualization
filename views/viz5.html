@@ -27,19 +27,6 @@
         pointer-events: none;
       }
 
-      .tooltip:after {
-        content: "";
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        width: 0;
-        height: 0;
-        margin-left: -5px;
-        border-width: 10px 5px 0;
-        border-style: solid;
-        border-color: lightsteelblue transparent;
-      }
-
       .custom-cursor {
         position: absolute;
         z-index: 1000;
@@ -89,23 +76,113 @@
       <a href="../index.html" class="btn btn-default" role="button"
         >Go back to Main Page</a
       >
+      <a href="viz4.html" class="btn btn-default" role="button"
+        >Go to previous visualization</a
+      >
+      <a href="viz6.html" class="btn btn-default" role="button"
+        >Go to next visualization</a
+      >
     </div>
     <div class="container">
       <div class="row">
+        <p class="lead" style="font-size: 4rem">Visualization 5</p>
+        <h1 id="title">
+          Which US states are nonimmigrants entering the US from?
+        </h1>
+        <h4>About Dataset Used for Choropleth:</h4>
+        <p class="larger-text">
+          Dataset is from Department of Homeland Security. It has the amount of
+          admissions of temporary workers and their families in the fiscal years
+          2012 to 2021 and which country they are coming from. GDP per capita
+          and population was found the IMF World Bank.
+        </p>
+        <h4>Our Question:</h4>
+        <p class="larger-text">
+          Looking at the bar chart and line graph in visualizations 1 and 2 we
+          were curious to see what the trends were on a by country basis. We
+          asked ourselves which countries had the highest admissions and why?
+          Was it because they were richer countries? Or was it because these
+          countries had a higher population? We also wanted to see how much
+          COVID affected this trends.
+        </p>
         <div class="col-md-12 text-center">
           <div id="chart">
             <svg width="1300" height="600"></svg>
           </div>
           <div class="slider-container">
-            <input type="range" id="slider" min="2012" max="2021" value="2012" step="1">
+            <div class="text-center">
+              <button id="toggleScaleButton" class="btn btn-primary">
+                Toggle Scale
+              </button>
+            </div>
+            <input
+              type="range"
+              id="slider"
+              min="2012"
+              max="2021"
+              value="2012"
+              step="1"
+            />
             <span id="year">2012</span>
           </div>
-          <!-- <button id="toggle-scale" class="btn btn-default">Toggle Scale</button> -->
         </div>
+        <h4>Analysis of Chart:</h4>
+        <p class="larger-text">
+          Looking at the logarithmic scale of the chart, it may appear that the
+          distribution of admissions is relatively even across countries, but
+          upon closer inspection, it becomes clear that there are some extreme
+          outliers. Specifically, Mexico and Canada have by far the highest
+          number of admissions into the US, which may be due to factors such as
+          geographic proximity and strong economic ties. As we scroll through
+          the years using the slider, we can see that there is a general uptick
+          in the number of admissions across all countries. However, this trend
+          is interrupted in the year 2021, which coincides with the onset of the
+          COVID-19 pandemic. Admissions dropped significantly from that year,
+          likely due to travel restrictions and other measures put in place to
+          mitigate the spread of the virus. It is worth noting that while the
+          logarithmic scale of the chart makes it difficult to visually compare
+          the magnitudes of different values, it does highlight the relative
+          growth rates of admissions over time. In this case, we can see that
+          the growth rate of admissions has been relatively consistent across
+          countries, with some exceptions such as China, which saw a large
+          increase in admissions around 2015 before leveling off in recent
+          years. Overall, the chart provides insights into the patterns of
+          nonimmigrant admissions into the US over time and how they may have
+          been impacted by external factors such as the COVID-19 pandemic.
+        </p>
+        <h4>Further Discussion:</h4>
+        <p class="larger-text">
+          Our bubble chart visualization provides a unique perspective on the
+          trends and disparities in nonimmigrant temporary worker admissions to
+          the US. By examining the size and position of the bubbles, we can see
+          which countries and regions are sending the most workers and how that
+          has changed over time. One interesting observation from the chart is
+          that Mexico and Canada, which are both geographically close to the US,
+          have the highest number of admissions by far. This suggests that
+          proximity may play a role in determining which countries are favored
+          for nonimmigrant admissions. However, it's important to note that
+          there are other factors at play, such as economic ties and political
+          relationships. Another key finding from our analysis is that COVID had
+          a significant impact on nonimmigrant admissions in 2020 and 2021. As
+          we can see from the chart, there was a steep drop in the number of
+          admissions during this time period, which is likely due to travel
+          restrictions and other pandemic-related factors. Overall, our
+          exploration of the nonimmigrant admissions dataset highlights the need
+          for further investigation into the factors that influence who is
+          admitted to the US for temporary work. By understanding these trends
+          and disparities, we can work towards creating a more equitable and
+          just immigration system for all.
+        </p>
       </div>
       <div class="row">
         <a href="../index.html" class="btn btn-default btn-sm" role="button"
           >Go back to Main Page</a
+        >
+        <a href="viz4.html" class="btn btn-default btn-sm" role="button"
+          >Go to previous visualization</a
+        >
+        <a href="viz6.html" class="btn btn-default btn-sm" role="button"
+          >Go to next visualization</a
         >
       </div>
     </div>

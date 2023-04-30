@@ -49,10 +49,13 @@
       <a href="../index.html" class="btn btn-default" role="button"
         >Go back to Main Page</a
       >
+      <a href="viz2.html" class="btn btn-default" role="button">Go to previous visualization</a>
+      <a href="viz4.html" class="btn btn-default" role="button">Go to next visualization</a>
     </div>
     <div class="container">
       <div class="row" id="container-chart">
         <div class="row">
+          <p class="lead" style="font-size: 4rem;">Visualization 3</p>
           <h1 id="title">
             Which US states are nonimmigrants entering the US from?
           </h1>
@@ -114,6 +117,8 @@
           <a href="../index.html" class="btn btn-default btn-sm" role="button"
             >Go back to Main Page</a
           >
+          <a href="viz2.html" class="btn btn-default btn-sm" role="button">Go to previous visualization</a>
+          <a href="viz4.html" class="btn btn-default btn-sm" role="button">Go to next visualization</a>
         </div>
       </div>
     </div>
@@ -214,7 +219,7 @@
             })
             .on("mouseover", function (d, i) {
               tooltip
-                .html(`${d.properties.name}: ${d.properties.value}`)
+                .html(`${d.properties.name}: ${Number(d.properties.value).toLocaleString()}`)
                 .style("visibility", "visible");
               svg.selectAll("path").attr("opacity", 0.4);
               d3.select(this).attr("opacity", 1);

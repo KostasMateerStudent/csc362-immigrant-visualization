@@ -1,116 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<title>Visualizing Foreign Immigrant Admissions</title>
+  <head>
+    <title>Visualizing Foreign Immigrant Admissions</title>
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	<script src="https://d3js.org/d3.v5.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
 
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>  
-	<div class="jumbotron text-center">
-		<h1>Visualizing Foreign Immigrant Admissions</h1>
-		<p>Kostas Mateer and Sathish Karthikeyan</p> 
-	</div>
-	<div class="container">
-		<div class="row">
-			<button type="button" onclick="window.location.href='/views/story.html'" class="our-story btn btn-default btn-lg btn-block">Our Story</button>
-		</div>
-		<div class="row text-center">
-			<h2>Around the World</h2>
-		</div>
-		<div class="row">
-			<div class="col-sm-4">
-				<div class="text-center">
-					<h3>Visualization 1</h3>
-				</div>
-				<img src="/images/viz1_icon.png" class="img-rounded" style="width:100%" alt="line chart">
-				<p class="text-justify">
-					A line chart of the number of nonimmigrant admissions into the US by continent between the years 2012-2021. 
-					The chart displays the trends of the number of visits by these workers to the US over time and the impact of 
-					COVID on it as well.
-				</p>
-				<div class="text-center">
-					<a href="/views/viz1.html" class="btn btn-primary" role="button">Click to View!</a>
-				</div>
-			</div>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="jumbotron text-center">
+      <h1>Visualizing Foreign Immigrant Admissions</h1>
+      <p>Kostas Mateer and Sathish Karthikeyan</p>
+    </div>
+    <div class="container">
+      <div class="row">
+        <button
+          type="button"
+          onclick="window.location.href='/views/story.html'"
+          class="our-story btn btn-default btn-lg btn-block"
+        >
+          Our Story
+        </button>
+      </div>
+      <div class="row text-center">
+        <h2>Around the World</h2>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="text-center">
+            <h3>Visualization 1</h3>
+          </div>
+          <img
+            src="/images/viz1_icon.png"
+            class="img-rounded"
+            style="width: 100%"
+            alt="line chart"
+          />
+          <p class="text-justify">
+            A line chart of the number of nonimmigrant admissions into the US by
+            continent between the years 2012-2021. The chart displays the trends
+            of the number of visits by these workers to the US over time and the
+            impact of COVID on it as well.
+          </p>
+          <div class="text-center">
+            <a href="/views/viz1.html" class="btn btn-primary" role="button"
+              >Click to View!</a
+            >
+          </div>
+        </div>
 
-			<div class="col-sm-4">
-				<div class="text-center">
-					<h3>Visualization 2</h3>
-				</div>
-				<img src="/images/viz2_icon.png" class="img-rounded" style="width:100%" alt="Some visual">
-				<p class="text-justify">
-					A linear and logarithmic bar chart of the number of nonimmigrant workers who 
-					came into the US in 2021 by the continent that they came in from. This 
-					highlights how the majority of these workers come from North America while much 
-					fewer come from the rest of the world.
-				</p>
-				<div class="text-center">
-					<a href="/views/viz2.html" class="btn btn-primary" role="button">Click to View!</a>
-				</div>
-			</div>
+        <div class="col-sm-4">
+          <div class="text-center">
+            <h3>Visualization 2</h3>
+          </div>
+          <img
+            src="/images/viz2_icon.png"
+            class="img-rounded"
+            style="width: 100%"
+            alt="Some visual"
+          />
+          <p class="text-justify">
+            A linear and logarithmic bar chart of the number of nonimmigrant
+            workers who came into the US in 2021 by the continent that they came
+            in from. This highlights how the majority of these workers come from
+            North America while much fewer come from the rest of the world.
+          </p>
+          <div class="text-center">
+            <a href="/views/viz2.html" class="btn btn-primary" role="button"
+              >Click to View!</a
+            >
+          </div>
+        </div>
 
-			<div class="col-sm-4">
-				<div class="text-center">
-					<h3>Visualization 3</h3>
-				</div>
-				<img src="/images/viz3_icon.png" class="img-rounded"  style="width: 97%;" alt="viz3">
-				<p class="text-justify">
-					A choropleth of the number of 
-					nonimmigrant workers who came into the US in 2021 by the 
-					state that they entered in. This highlights how the 
-					majority of these workers enter through Arizona, Michigan, California, 
-					Texas, Florida, and New York.
-				</p>
-				<div class="text-center">
-					<a href="/views/viz3.html" class="btn btn-primary" role="button">Click to View!</a>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-4">
-				<div class="text-center">
-					<h3>Visualization 4</h3>
-				</div>
-				<img src="/images/viz4_icon.png" class="img-rounded" style="width:100%" alt="placeholder">
-				<p class="text-justify">
-					placeholder
-				</p>
-				<div class="text-center">
-					<a href="/views/viz4.html" class="btn btn-primary" role="button">Click to View!</a>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="text-center">
-					<h3>Visualization 5</h3>
-				</div>
-				<img src="/images/viz5_icon.png" class="img-rounded" style="width:100%" alt="placeholder">
-				<p class="text-justify">
-					placeholder
-				</p>
-				<div class="text-center">
-					<a href="/views/viz5.html" class="btn btn-primary" role="button">Click to View!</a>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="text-center">
-					<h3>Visualization 6</h3>
-				</div>
-				<img src="/images/viz6_icon.png" class="img-rounded" style="width:100%" alt="placeholder">
-				<p class="text-justify">
-					placeholder
-				</p>
-				<div class="text-center">
-					<a href="/views/viz6.html" class="btn btn-primary" role="button">Click to View!</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</body>
+        <div class="col-sm-4">
+          <div class="text-center">
+            <h3>Visualization 3</h3>
+          </div>
+          <img
+            src="/images/viz3_icon.png"
+            class="img-rounded"
+            style="width: 97%"
+            alt="viz3"
+          />
+          <p class="text-justify">
+            A choropleth of the number of nonimmigrant workers who came into the
+            US in 2021 by the state that they entered in. This highlights how
+            the majority of these workers enter through Arizona, Michigan,
+            California, Texas, Florida, and New York.
+          </p>
+          <div class="text-center">
+            <a href="/views/viz3.html" class="btn btn-primary" role="button"
+              >Click to View!</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="text-center">
+            <h3>Visualization 4</h3>
+          </div>
+          <img
+            src="/images/viz4_icon.png"
+            class="img-rounded"
+            style="width: 100%"
+            alt="placeholder"
+          />
+          <p class="text-justify">placeholder</p>
+          <div class="text-center">
+            <a href="/views/viz4.html" class="btn btn-primary" role="button"
+              >Click to View!</a
+            >
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="text-center">
+            <h3>Visualization 5</h3>
+          </div>
+          <img
+            src="/images/viz5_icon.png"
+            class="img-rounded"
+            style="width: 100%"
+            alt="placeholder"
+          />
+          <p class="text-justify">
+            Bubble chart displaying the relationship between nonimmigrant
+            admissions and GDP per capita for countries in 2021. Highlights
+            disparities in economic development and immigration patterns, with
+            larger bubbles indicating higher populations.
+          </p>
+          <div class="text-center">
+            <a href="/views/viz5.html" class="btn btn-primary" role="button"
+              >Click to View!</a
+            >
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="text-center">
+            <h3>Visualization 6</h3>
+          </div>
+          <img
+            src="/images/viz6_icon.png"
+            class="img-rounded"
+            style="width: 100%"
+            alt="placeholder"
+          />
+          <p class="text-justify">placeholder</p>
+          <div class="text-center">
+            <a href="/views/viz6.html" class="btn btn-primary" role="button"
+              >Click to View!</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

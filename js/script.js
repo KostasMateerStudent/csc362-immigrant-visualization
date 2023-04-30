@@ -29,13 +29,43 @@ function ready([
   const yScale = d3.scaleLog().range([height - padding, padding]);
   const sizeScale = d3.scaleSqrt().range([5, 50]);
 
+  const xScaleLin = d3.scaleLinear().range([padding, width - padding]);
+  const yScaleLin = d3.scaleLinear().range([height - padding, padding]);
+
+  let isLog = true;
+  const toggleScaleButton = d3.select("#toggleScaleButton");
+  toggleScaleButton.on("click", () => {
+    if (isLog) {
+      toggleScaleButton.text("change to log");
+      isLog = false;
+    } else {
+      toggleScaleButton.text("change to linear");
+      isLog = true;
+    }
+    updateChart(+d3.select("#slider").node().value);
+  });
+
   const xAxis = d3
     .axisBottom(xScale)
     .tickFormat((d, i) => (i % 10 === 0 ? d3.format("~d")(d) : ""));
+  
+  const xAxisLin = d3.axisBottom(xScaleLin);
 
   const yAxis = d3
     .axisLeft(yScale)
     .tickFormat((d, i) => (i % 2 === 0 ? d3.format("~d")(d) : ""));
+  
+  const yAxisLin = d3.axisLeft(yScaleLin);
+
+  const title = svg
+  .append("text")
+  .attr("class", "chart-title")
+  .attr("x", width / 2)
+  .attr("y", padding / 2)
+  .attr("text-anchor", "middle")
+  .style("font-size", "20px")
+  .style("text-decoration", "underline")
+  .text("# of Nonimmigrant Admissions vs GDP per Capita from 2012-2021");
 
   svg
     .append("g")
@@ -88,8 +118,6 @@ function ready([
       "South America",
     ]);
 
-  initializeScales(2012);
-
   function initializeScales(year) {
     const initialData = populationData
       .map((row, i) => {
@@ -106,6 +134,8 @@ function ready([
     const yminValue = 200; // Minimum value for the yScale
     xScale.domain([xminValue, d3.max(initialData, (d) => d.numImmigrants)]);
     yScale.domain([200, d3.max(initialData, (d) => d.gdpPerCapita)]);
+    xScaleLin.domain([xminValue, d3.max(initialData, (d) => d.numImmigrants)]);
+    yScaleLin.domain([yminValue, d3.max(initialData, (d) => d.gdpPerCapita)]);
     sizeScale.domain(d3.extent(initialData, (d) => d.population));
   }
 
@@ -123,7 +153,7 @@ function ready([
 
     svg
       .select(".x-axis")
-      .call(xAxis)
+      .call(isLog? xAxis : xAxisLin)
       .selectAll("text")
       .attr("y", 9)
       .attr("x", -5)
@@ -131,7 +161,7 @@ function ready([
       .attr("transform", "rotate(-45)")
       .style("text-anchor", "end");
 
-    svg.select(".y-axis").call(yAxis);
+    svg.select(".y-axis").call(isLog ? yAxis : yAxisLin);
 
     const bubbles = svg.selectAll(".bubble").data(data, (d) => d.country);
 
@@ -155,9 +185,7 @@ function ready([
           .html(
             `${d.country}<br>GDP per Capita: ${d.gdpPerCapita.toFixed(
               2
-            )}<br>Population: ${d.population.toLocaleString()}<br>Number of Non-Immigrants: ${
-              d.numImmigrants
-            }`
+            )}<br>Population: ${d.population.toLocaleString()}<br>Number of Admissions: ${d.numImmigrants.toLocaleString()}`
           )
           .style("left", mouseX - 150 / 2 + "px")
           .style("top", mouseY - 80 + "px")
@@ -168,9 +196,15 @@ function ready([
         svg.selectAll(".bubble").transition().duration(100).style("opacity", 1);
       })
       .merge(bubbles)
-      .attr("cx", (d) => xScale(d.numImmigrants))
-      .attr("cy", (d) => yScale(d.gdpPerCapita))
-      .attr("r", (d) => sizeScale(d.population));
+      .attr("cx", (d) =>
+        isLog ? xScale(d.numImmigrants) : xScaleLin(d.numImmigrants)
+      )
+      .attr("cy", (d) =>
+        isLog ? yScale(d.gdpPerCapita) : yScaleLin(d.gdpPerCapita)
+      )
+      .attr("r", (d) => sizeScale(d.population))
+      .attr("stroke", "black")
+      .attr("stroke-width", 1);
     bubbles.exit().remove();
   }
   d3.select("#slider").on("input", function () {
@@ -206,7 +240,9 @@ function ready([
       .append("rect")
       .attr("width", 20)
       .attr("height", 20)
-      .attr("fill", (d) => colorScale(d));
+      .attr("fill", (d) => colorScale(d))
+      .attr("stroke", "black")
+      .attr("stroke-width", 1);
 
     legendItems
       .append("text")
@@ -230,6 +266,7 @@ function ready([
       });
   }
 
+  initializeScales(2018);
   updateChart(2012);
   drawLegend();
 }

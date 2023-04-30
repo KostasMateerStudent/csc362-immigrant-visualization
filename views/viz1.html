@@ -1,282 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<title>Visualizing Foreign Immigrant Admissions</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	<script src="https://d3js.org/d3.v5.min.js"></script>
-  <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-  <div class="jumbotron text-center">
-    <h1>Visualizing Foreign Immigrant Admissions</h1>
-    <p style="text-align: center;">Kostas Mateer and Sathish Karthikeyan</p> 
-    <a href="../index.html" class="btn btn-default" role="button">Go back to Main Page</a>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <h1 id="title"></h1>
-      <div class="larger-text" id="aboutDataset"></div>
-      <div class="larger-text" id="aboutQuestion"></div>
-      <div class="larger-text" id="chart"></div>
-      <div class="larger-text" id="aboutChart"></div>
-      <div class="larger-text" id="furtherDiscussion"></div>
+  <head>
+    <title>Visualizing Foreign Immigrant Admissions</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="jumbotron text-center">
+      <h1>Visualizing Foreign Immigrant Admissions</h1>
+      <p style="text-align: center">Kostas Mateer and Sathish Karthikeyan</p>
+      <a href="../index.html" class="btn btn-default" role="button"
+        >Go back to Main Page</a
+      >
+      <a href="viz2.html" class="btn btn-default" role="button"
+        >Go to next visualization</a
+      >
     </div>
-    <div class="row">
-			<a href="../index.html" class="btn btn-default btn-sm" role="button">Go back to Main Page</a>
-		</div>
-  </div>
 
-  <style>
-    .header-text {
-      margin-bottom: 0;
-    }
+    <div class="container">
+      <div class="row">
+        <p class="lead" style="font-size: 4rem">Visualization 1</p>
+        <h1 id="title"></h1>
+        <div class="larger-text" id="aboutDataset"></div>
+        <div class="larger-text" id="aboutQuestion"></div>
+        <div class="larger-text" id="chart"></div>
+        <div class="larger-text" id="aboutChart"></div>
+        <div class="larger-text" id="furtherDiscussion"></div>
+      </div>
+      <div class="row">
+        <a href="../index.html" class="btn btn-default btn-sm" role="button"
+          >Go back to Main Page</a
+        >
+        <a href="viz2.html" class="btn btn-default btn-sm" role="button"
+          >Go to next visualization</a
+        >
+      </div>
+    </div>
 
-    .sub-text {
-      margin-top: .5em;
-    }
+    <style>
+      .header-text {
+        margin-bottom: 0;
+      }
 
-    .axis--x path {
-      stroke: black;
-    }
+      .sub-text {
+        margin-top: 0.5em;
+      }
 
-    .line {
-      fill: none;
-      stroke: steelblue;
-      stroke-width: 3px;
-    }
+      .axis--x path {
+        stroke: black;
+      }
 
-    #chart {
-      display: flex;
-      justify-content: center;
-    }
-  </style>
+      .line {
+        fill: none;
+        stroke: steelblue;
+        stroke-width: 3px;
+      }
 
-  <script>
-    // header code
-    const title = d3.select("#title");
-    title
-      .classed("text", true)
-      .text(
-        "Exploring Disparties of Foreign National Admissions into the US Over Time"
-      );
+      #chart {
+        display: flex;
+        justify-content: center;
+      }
+    </style>
 
-    // about dataset
-    const aboutData = d3.select("#aboutDataset");
-    aboutData.append("h4").text("About Dataset Used for Time Series:").classed("header-text", true);
-    aboutData
-      .append("p")
-      .text(
-        "Dataset is from Department of Homeland Security. It has total nonimmigrant admissions" +
-        " into the United States from fiscal years 2012 to 2021. The regions of citizenship are" +
-        " Africa, Asia, Europe, North America, Oceania and South America."
-      )
-      .classed("sub-text", true);
+    <script>
+      // header code
+      const title = d3.select("#title");
+      title
+        .classed("text", true)
+        .text(
+          "Exploring Disparties of Foreign National Admissions into the US Over Time"
+        );
 
-    // about question
-    const aboutQuestion = d3.select("#aboutQuestion");
-    aboutQuestion.append("h4").text("Our Question:").classed("header-text", true);
-    aboutQuestion
-      .append("p")
-      .text(
-        "What are the disparties of admitted nonimmigrants into the US?" +
-        " We know that immigration services sometimes have systemic racial predjudices," +
-        " so we are trying to visualize those over time. We also want to know what was the" +
-        " effect of COVID on these regions and if it further enhanced the disparities?"
-      )
-      .classed("sub-text", true)
-      .style("margin-bottom", "0.5em");
+      // about dataset
+      const aboutData = d3.select("#aboutDataset");
+      aboutData
+        .append("h4")
+        .text("About Dataset Used for Time Series:")
+        .classed("header-text", true);
+      aboutData
+        .append("p")
+        .text(
+          "Dataset is from Department of Homeland Security. It has total nonimmigrant admissions" +
+            " into the United States from fiscal years 2012 to 2021. The regions of citizenship are" +
+            " Africa, Asia, Europe, North America, Oceania and South America."
+        )
+        .classed("sub-text", true);
 
-    aboutQuestion
-      .append("p")
-      .text(
-        "The reasons we are asking these questions is because we are trying to explore disparties using" +
-        " a time-series chart. The regions we selected are important because it gives a generalization" +
-        " of the world, and can show how groups of people from different parts of the world could be" +
-        " discriminated against. Especially because the population of Africa is higher than Europe."
-      )
-      .style("margin-top", 0);
+      // about question
+      const aboutQuestion = d3.select("#aboutQuestion");
+      aboutQuestion
+        .append("h4")
+        .text("Our Question:")
+        .classed("header-text", true);
+      aboutQuestion
+        .append("p")
+        .text(
+          "What are the disparities in the admission of nonimmigrants into the US? We are exploring this question to investigate if there are systemic biases or racial prejudices present in the US immigration system. Our goal is to visualize any trends over time and understand if there are any patterns of favoritism towards certain countries or regions. Additionally, we want to examine the impact of the COVID-19 pandemic on these disparities and see if it exacerbated any existing inequalities."
+        )
+        .classed("sub-text", true)
+        .style("margin-bottom", "0.5em");
 
+      aboutQuestion
+        .append("p")
+        .text(
+          "We are interested in exploring disparities in the admission of nonimmigrants into the US over time, as we suspect that there may be systemic racial biases in the immigration system. We also want to investigate the impact of COVID on these disparities. We chose to focus on different regions of the world because it allows us to visualize how people from various parts of the world are treated and whether certain groups are favored over others. Additionally, the selection of regions is important because it provides a generalization of the world, and we can explore how groups of people from different parts of the world are affected by discriminatory practices. It is also worth noting that Africa has a higher population than Europe, which makes it important to explore whether African immigrants are being treated fairly in comparison to other regions."
+        )
+        .style("margin-top", 0);
 
-    // Define dimensions for the chart
-    var margin = { top: 40, right: 150, bottom: 60, left: 80 },
-      width = 1000 - margin.left - margin.right,
-      height = 500 - margin.top - margin.bottom;
+      // Define dimensions for the chart
+      var margin = { top: 40, right: 150, bottom: 60, left: 80 },
+        width = 1000 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
 
-    // Define the SVG element
-    // append the svg object to the body of the page
-    // append a 'group' element to 'svg'
-    // moves the 'group' element to the top left margin
-    var svg = d3
-      .select("#chart")
-      .append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      // Define the SVG element
+      // append the svg object to the body of the page
+      // append a 'group' element to 'svg'
+      // moves the 'group' element to the top left margin
+      var svg = d3
+        .select("#chart")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    // timeParse function to convert text into Date object
-    var parseTime = d3.timeParse("%Y");
+      // timeParse function to convert text into Date object
+      var parseTime = d3.timeParse("%Y");
 
-    // Define the x, y and have color scheme scales
-    var x = d3.scaleTime().range([0, width]),
-      y = d3.scaleLinear().range([height, 0]),
-      z = d3.scaleOrdinal(d3.schemeCategory10);
+      // Define the x, y and have color scheme scales
+      var x = d3.scaleTime().range([0, width]),
+        y = d3.scaleLinear().range([height, 0]),
+        z = d3.scaleOrdinal(d3.schemeCategory10);
 
-    // define how the line function will be setup
-    var line = d3
-      .line()
-      .curve(d3.curveLinear)
-      .x((d) => x(d.Year))
-      .y((d) => y(d.Number));
+      // define how the line function will be setup
+      var line = d3
+        .line()
+        .curve(d3.curveLinear)
+        .x((d) => x(d.Year))
+        .y((d) => y(d.Number));
 
-    //read data
-    d3.csv("/data/Continents.csv").then((data) => {
-      data.forEach((d) => {
-        d.Year = parseTime(d.Year);
-        d.Number = +d.Number;
+      //read data
+      d3.csv("/data/Continents.csv").then((data) => {
+        data.forEach((d) => {
+          d.Year = parseTime(d.Year);
+          d.Number = +d.Number;
+        });
+
+        var continents = d3
+          .nest()
+          .key((d) => d.Continent)
+          .entries(data);
+
+        // Set the domain for the x and y scales
+        x.domain(d3.extent(data, (d) => d.Year));
+        y.domain([
+          0,
+          d3.max(continents, (c) => d3.max(c.values, (d) => d.Number)),
+        ]);
+        z.domain(continents.map((c) => c.key));
+
+        // Add the x axis
+        svg
+          .append("g")
+          .attr("class", "axis axis--x")
+          .attr("transform", "translate(0," + height + ")")
+          .call(d3.axisBottom(x));
+
+        // Add the y axis
+        svg
+          .append("g")
+          .attr("class", "axis axis--y")
+          .call(d3.axisLeft(y))
+          .append("text")
+          .attr("transform", "rotate(-90)")
+          .attr("y", 6)
+          .attr("dy", "0.71em")
+          .attr("fill", "#000")
+          .style("font-size", "11px")
+          .text("Number of Nonimmigrant Admissions");
+
+        // prototype for continents
+        var continent = svg
+          .selectAll(".continent")
+          .data(continents)
+          .enter()
+          .append("g")
+          .attr("class", "continent");
+
+        // create lines for each continent
+        continent
+          .append("path")
+          .attr("class", "line")
+          .attr("d", (d) => line(d.values))
+          .style("stroke", (d) => z(d.key));
+
+        // setup the legend
+        var legendBox = 140;
+        var legend = svg
+          .selectAll(".legend")
+          .data(continents)
+          .enter()
+          .append("g")
+          .attr("class", "legend")
+          .attr("transform", function (d, i) {
+            return "translate(0, " + i * 20 + ")";
+          });
+
+        // add color scheme and rectangles to legend
+        legend
+          .append("rect")
+          .attr("x", width + 10)
+          .attr("y", margin.top)
+          .attr("rx", 5)
+          .attr("width", legendBox)
+          .attr("height", 20)
+          .style("fill", (d) => z(d.key));
+
+        // add text to legend
+        legend
+          .append("text")
+          .attr("x", width + 10 + legendBox / 2)
+          .attr("y", margin.top + 9)
+          .attr("dy", ".35em")
+          .attr("text-anchor", "middle")
+          .style("cursor", "default")
+          .text((d) => d.key);
+
+        //x-axis label
+        svg
+          .append("text")
+          .attr(
+            "transform",
+            "translate(" +
+              width / 2 +
+              " ," +
+              (height + margin.bottom - 10) +
+              ")"
+          )
+          .style("text-anchor", "middle")
+          .text("Year");
+
+        //Title
+        svg
+          .append("text")
+          .attr("x", width / 2)
+          .attr("y", 0 - margin.top / 2)
+          .attr("text-anchor", "middle")
+          .style("font-size", "20px")
+          .style("text-decoration", "underline")
+          .text(
+            "# of Nonimmigrant admissions to the US between fiscal years 2012-2021"
+          );
       });
 
-      var continents = d3.nest()
-        .key((d) => d.Continent)
-        .entries(data);
+      // about chart
+      const aboutChart = d3.select("#aboutChart");
+      aboutChart
+        .append("h4")
+        .text("Analysis of Chart:")
+        .classed("header-text", true);
+      aboutChart
+        .append("p")
+        .text(
+          "The graph provides insights into our question, but further analysis is required. There is a significant disparity between Europe, Asia, and the rest of the world. Although the high number of nonimmigrant admissions from Asia could suggest a lack of prejudice, Europe has the highest number of admissions (excluding North America). This trend may be attributed to differences in wealth between the continents, as individuals with higher-paying jobs may have better opportunities to enter the US for work purposes. Another interesting observation is the impact of COVID-19 on immigration patterns. All continents experienced a significant decrease in the number of immigrants coming to the US, but South America continued to send relatively higher numbers of immigrants compared to other regions. This could be explained by the proximity of South America to the US."
+        )
+        .classed("sub-text", true);
 
-      // Set the domain for the x and y scales
-      x.domain(d3.extent(data, d => d.Year));
-      y.domain([0, d3.max(continents, c => d3.max(c.values, d => d.Number))]);
-      z.domain(continents.map(c => c.key));
+      // further discussion
+      const furtherDiscussion = d3.select("#furtherDiscussion");
+      furtherDiscussion
+        .append("h4")
+        .text("Further Discussion:")
+        .classed("header-text", true);
+      furtherDiscussion
+        .append("p")
+        .text(
 
-      // Add the x axis
-      svg
-        .append("g")
-        .attr("class", "axis axis--x")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
-
-      // Add the y axis
-      svg.append("g")
-        .attr("class", "axis axis--y")
-        .call(d3.axisLeft(y))
-        .append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", "0.71em")
-        .attr("fill", "#000")
-        .style("font-size", "11px")
-        .text("Number of Nonimmigrant Admissions");
-
-      // prototype for continents
-      var continent = svg.selectAll(".continent")
-        .data(continents)
-        .enter().append("g")
-        .attr("class", "continent");
-
-      // create lines for each continent
-      continent.append("path")
-        .attr("class", "line")
-        .attr("d", d => line(d.values))
-        .style("stroke", d => z(d.key));
-
-      // setup the legend
-      var legendBox = 140;
-      var legend = svg.selectAll(".legend")
-        .data(continents)
-        .enter().append("g")
-        .attr("class", "legend")
-        .attr("transform", function (d, i) {
-          return "translate(0, " + i * 20 + ")";
-        })
-
-      // add color scheme and rectangles to legend
-      legend.append("rect")
-        .attr("x", width + 10)
-        .attr("y", margin.top)
-        .attr("rx", 5)
-        .attr("width", legendBox)
-        .attr("height", 20)
-        .style("fill", d => z(d.key));
-
-      // add text to legend
-      legend.append("text")
-        .attr("x", width + 10 + legendBox / 2)
-        .attr("y", margin.top + 9)
-        .attr("dy", ".35em")
-        .attr("text-anchor", "middle")
-        .style("cursor", "default")
-        .text(d => d.key);
-
-      //x-axis label
-      svg.append("text")
-        .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.bottom - 10) + ")")
-        .style("text-anchor", "middle")
-        .text("Year");
-
-      //Title
-      svg.append("text")
-        .attr("x", (width / 2))
-        .attr("y", 0 - (margin.top / 2))
-        .attr("text-anchor", "middle")
-        .style("font-size", "20px")
-        .style("text-decoration", "underline")
-        .text("# of Nonimmigrant admissions to the US between fiscal years 2012-2021");
-
-
-    });
-
-    // about chart
-    const aboutChart = d3.select("#aboutChart");
-    aboutChart
-      .append("h4")
-      .text(
-        "Analysis of Chart:"
-      )
-      .classed("header-text", true)
-    aboutChart
-      .append("p")
-      .text(
-        "The graph helps answer our question, but further analysis would need to be done." +
-        " There is a large discrepency between Europe, Asia, and then the rest of the world." +
-        " One can assume that the Asia admissions are most likely not prejudice because" +
-        " of the large population, but Europe takes the cake for being the highest number of" +
-        " admissions into the United States (besides North America). One key factor explaining" +
-        " this phenomena could be the difference in wealth between the people in these continets." +
-        " It makes sense that wealthier people with higher paying jobs will have better opportunities" +
-        " to enter the US for work purposes." +
-        " It is also interesting to note the effect of COVID on the world. All continents saw a big" +
-        " decrease in the number immigrants coming to the US. South America however, continued to send" +
-        " a relatively higher number of immigrants to the US compared to others and its proximity could" +
-        " explain this phenomena."
-      )
-      .classed("sub-text", true);
-
-    // further discussion
-    const furtherDiscussion = d3.select("#furtherDiscussion");
-    furtherDiscussion
-      .append("h4")
-      .text(
-        "Further Discussion:"
-      )
-      .classed("header-text", true)
-    furtherDiscussion
-      .append("p")
-      .text(
-        "The time-series graph was a useful tool in helping us gain more of an understanding" +
-        " of our overall inquiry of whether or not the US chooses to allow certain groups" +
-        " in more than others. There are still questions left. On one hand, it is obvious" +
-        " to see that Europe, Asia, South America, and North America have the largest amount" +
-        " of admissions into the US; however, why is that? Is it because of proximity, money" +
-        ", culture, or is it because the US is more strict on Africans? We plan on solving these" +
-        " questions through more analysis. One way this can be done is by having a per capita rate" +
-        " instead of an absolute number that does not take population into account. We can also try" +
-        " normalising for the other factors mentioned such as income. Then, we also have country data," +
-        " giving us the option of seeing whether one or two countries dominate a continent or if it is" +
-        " spread out evenly across its countries. Also, this dataset just includes the number of admissions" +
-        " meaning that it is possible for someone in Mexico or Canada who enter the US multiple times in a year." +
-        " This adds a small bias making North America seem like it has a bigger number of immigrants than others."
-      )
-      .classed("sub-text", true)
-  </script>
-</body>
+        "The time-series graph provided us with valuable insights to better understand our research question on whether the US shows preferences in admitting certain groups over others. However, there are still several unanswered questions. While it's clear that Europe, Asia, South America, and North America have the highest number of admissions into the US, we need to investigate the reasons behind this trend. Is it due to geographical proximity, cultural ties, financial stability, or some other factor? Another crucial aspect to consider is whether the US immigration policies are biased towards certain regions or ethnic groups. To address these questions, we need to conduct more in-depth analysis. For instance, we can calculate per capita admission rates, which would account for population differences across continents. Normalizing for other factors like income levels and education can help us better understand the underlying causes of the disparities observed. Additionally, examining country-level data can shed light on whether a particular country dominates a continent in terms of admissions or whether the trend is more evenly distributed. It's important to note that the dataset only includes the number of admissions, and someone from Mexico or Canada could potentially enter the US multiple times in a year. This might create a slight bias and make North America appear to have more admissions than other regions. Therefore, we need to be mindful of these limitations while interpreting the data."
+        )
+        .classed("sub-text", true);
+    </script>
+  </body>
 </html>
