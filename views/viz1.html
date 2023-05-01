@@ -25,6 +25,15 @@
 
     <div class="container">
       <div class="row">
+        <button
+          type="button"
+          onclick="window.location.href='/views/story.html'"
+          class="our-story btn btn-primary btn-lg btn-block"
+        >
+          Click Here to View Our Story!
+        </button>
+      </div>
+      <div class="row">
         <p class="lead" style="font-size: 4rem">Visualization 1</p>
         <h1 id="title"></h1>
         <div class="larger-text" id="aboutDataset"></div>
@@ -198,7 +207,8 @@
           .append("path")
           .attr("class", "line")
           .attr("d", (d) => line(d.values))
-          .style("stroke", (d) => z(d.key));
+          .style("stroke", (d) => z(d.key))
+          .style("opacity", 1);
 
         // setup the legend
         var legendBox = 140;
@@ -212,6 +222,28 @@
             return "translate(0, " + i * 20 + ")";
           });
 
+        // Define a variable to keep track of which continent is clicked
+        var clickedContinent = null;
+        // Define the click event for the legend
+        legend.on("click", function (d) {
+          // Check if the clicked continent is the same as the one previously clicked
+          var sameContinentClicked = clickedContinent === d.key;
+
+          // Set the opacity for the clicked and unclicked continents
+          var clickedOpacity = sameContinentClicked ? 1 : 0.2;
+          var unclickedOpacity = sameContinentClicked ? 1 : 0.2;
+
+          // Update the clicked continent variable
+          clickedContinent = sameContinentClicked ? null : d.key;
+
+          // Update the opacity of the lines based on which continent is clicked
+          d3.selectAll(".line").style("opacity", function (e) {
+            return e.key === clickedContinent || clickedContinent === null
+              ? 1
+              : unclickedOpacity;
+          });
+        });
+
         // add color scheme and rectangles to legend
         legend
           .append("rect")
@@ -220,16 +252,17 @@
           .attr("rx", 5)
           .attr("width", legendBox)
           .attr("height", 20)
-          .style("fill", (d) => z(d.key));
+          .style("fill", (d) => z(d.key))
+          .classed("selected", true);
 
         // add text to legend
         legend
+          .style("cursor", "pointer")
           .append("text")
           .attr("x", width + 10 + legendBox / 2)
           .attr("y", margin.top + 9)
           .attr("dy", ".35em")
           .attr("text-anchor", "middle")
-          .style("cursor", "default")
           .text((d) => d.key);
 
         //x-axis label
@@ -281,8 +314,7 @@
       furtherDiscussion
         .append("p")
         .text(
-
-        "The time-series graph provided us with valuable insights to better understand our research question on whether the US shows preferences in admitting certain groups over others. However, there are still several unanswered questions. While it's clear that Europe, Asia, South America, and North America have the highest number of admissions into the US, we need to investigate the reasons behind this trend. Is it due to geographical proximity, cultural ties, financial stability, or some other factor? Another crucial aspect to consider is whether the US immigration policies are biased towards certain regions or ethnic groups. To address these questions, we need to conduct more in-depth analysis. For instance, we can calculate per capita admission rates, which would account for population differences across continents. Normalizing for other factors like income levels and education can help us better understand the underlying causes of the disparities observed. Additionally, examining country-level data can shed light on whether a particular country dominates a continent in terms of admissions or whether the trend is more evenly distributed. It's important to note that the dataset only includes the number of admissions, and someone from Mexico or Canada could potentially enter the US multiple times in a year. This might create a slight bias and make North America appear to have more admissions than other regions. Therefore, we need to be mindful of these limitations while interpreting the data."
+          "The time-series graph provided us with valuable insights to better understand our research question on whether the US shows preferences in admitting certain groups over others. However, there are still several unanswered questions. While it's clear that Europe, Asia, South America, and North America have the highest number of admissions into the US, we need to investigate the reasons behind this trend. Is it due to geographical proximity, cultural ties, financial stability, or some other factor? Another crucial aspect to consider is whether the US immigration policies are biased towards certain regions or ethnic groups. To address these questions, we need to conduct more in-depth analysis. For instance, we can calculate per capita admission rates, which would account for population differences across continents. Normalizing for other factors like income levels and education can help us better understand the underlying causes of the disparities observed. Additionally, examining country-level data can shed light on whether a particular country dominates a continent in terms of admissions or whether the trend is more evenly distributed. It's important to note that the dataset only includes the number of admissions, and someone from Mexico or Canada could potentially enter the US multiple times in a year. This might create a slight bias and make North America appear to have more admissions than other regions. Therefore, we need to be mindful of these limitations while interpreting the data."
         )
         .classed("sub-text", true);
     </script>

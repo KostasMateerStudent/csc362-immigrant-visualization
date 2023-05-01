@@ -13,14 +13,15 @@
     background-color: #E8EDF2;
 }
 
-.our-story {
-    background-color: #E8EDF2;
-}
+/* .our-story {
+    background-color: #E8EDF2 !important;
+    border-width: 2px;
+} */
 
 .filler {
     color: #E8EDF2;
 }
 
 .larger-text {
-    font-size: 1.5rem;
+    font-size: 1.65rem;
 }

@@ -49,76 +49,89 @@
       <a href="../index.html" class="btn btn-default" role="button"
         >Go back to Main Page</a
       >
-      <a href="viz2.html" class="btn btn-default" role="button">Go to previous visualization</a>
-      <a href="viz4.html" class="btn btn-default" role="button">Go to next visualization</a>
+      <a href="viz2.html" class="btn btn-default" role="button"
+        >Go to previous visualization</a
+      >
+      <a href="viz4.html" class="btn btn-default" role="button"
+        >Go to next visualization</a
+      >
     </div>
     <div class="container">
+      <div class="row">
+        <button
+          type="button"
+          onclick="window.location.href='/views/story.html'"
+          class="our-story btn btn-primary btn-lg btn-block"
+        >
+          Click Here to View Our Story!
+        </button>
+      </div>
       <div class="row" id="container-chart">
         <div class="row">
-          <p class="lead" style="font-size: 4rem;">Visualization 3</p>
+          <p class="lead" style="font-size: 4rem">Visualization 3</p>
           <h1 id="title">
             Which US states are nonimmigrants entering the US from?
           </h1>
           <h4>About Dataset Used for Choropleth:</h4>
           <p class="larger-text">
-            Dataset is from Department of Homeland Security. It has the amount
-            of admissions by state of temporary workers and their famlies in the
-            fiscal year 2021.
+            The dataset used for this choropleth map is from the Department of
+            Homeland Security, and it shows the amount of admissions by state of
+            temporary workers and their families in the fiscal year 2021.
           </p>
           <h4>Our Question:</h4>
           <p class="larger-text">
-            Coming from the previous visualizations and data, we found out where
-            these nonimmigrants were coming from and the amount of admissions
-            over time. This led us to ask the question: where are all these
-            people entering into the US? We also hypothesized that the coastal
-            regions would be the most common entry points, and we wanted to see
-            if we are correct in that hypothesis. Another question of ours was
-            what states recieve the most immigrants, and what are legislative
-            policies in these states regarding immigrants?
+            Building on our previous visualizations and data, we were curious to
+            find out where these nonimmigrants were entering the US from. We
+            hypothesized that coastal regions would be the most common entry
+            points, and we wanted to see if that was the case. We also wanted to
+            identify the states that receive the most nonimmigrants and examine
+            their legislative policies towards immigrants.
           </p>
           <div id="chart"></div>
           <h4>Analysis of Chart:</h4>
           <p class="larger-text">
-            Our intital hypothesis was correct because the coastal parts of the
-            US have the most admissions: California, Florida, and all along the
-            East Coast. The ones that stood out the most were Michigan,
-            Washington, Arizona, and Texas. We wonder why Michigan and
-            Washington have a higher amount of admissions. We believe it to be
-            due to Canada because Vancouver is extremely close to Washington
-            state. For Michigan, we believe it is because of Toronto. However,
-            we wonder why Arizona and Texas have such a high level of
-            admissions. We know it is most likely due to Mexico and South
-            America, but why not New Mexico? This choropleth helps easily locate
-            large entry points, and it is important to see these, so we can
-            start asking more questions about these particular states. Do these
-            states have more opportunities for nonimmigrants? Are these states
-            more open to nonimmigrants? Do these states have increasing pressure
-            because the amount of nonimmigrants flowing into the state? Or do
-            these states just have major airports where the nonimmgrants
-            intially enter the country, then go to their own state after intial
-            entry?
+            Our hypothesis was confirmed as the coastal parts of the US have the
+            most admissions, with California, Florida, and the East Coast having
+            the highest numbers. We also noticed that Michigan, Washington,
+            Arizona, and Texas had high numbers of admissions. While we believe
+            that Michigan and Washington's proximity to Canada could be a
+            factor, we are curious as to why Arizona and Texas had such high
+            numbers, but not New Mexico. We speculate that Mexico and South
+            America could be the primary reasons for the high levels of
+            admissions in Arizona and Texas. This choropleth map helps identify
+            entry points for nonimmigrants, and raises important questions about
+            these particular states. Do they offer more opportunities for
+            nonimmigrants? Are they more welcoming to nonimmigrants? Or are they
+            experiencing increasing pressure due to the number of nonimmigrants
+            entering the state? Another possibility is that they may have major
+            airports that serve as initial entry points for nonimmigrants, who
+            then move to other states.
           </p>
           <h4>Further Discussion:</h4>
           <p class="larger-text">
-            This choropleth is a great tool to quickly find hotspots within the
-            US when it comes to admissions. It is easy to see that California,
-            Arizona, Michigan, Texas, Florida, New York, and Washington state
-            have the highest level of admissions. We think there are obvious
-            answers for most of them, but some of them are a little perplexing.
-            It makes sense for California to have a large amount because of its
-            proximity to Asia, and to Mexico. Same with Arizona and Texas for
-            Mexico and South America, but why not New Mexico? One idea that we
-            have is that New Mexico's population (2.1 million) is significantly
-            lower than Arizona (7.3 million) and further more, Texas (29.5
-            million).
+            This choropleth map is a useful tool for identifying entry points
+            for nonimmigrants in the US. The map highlights California, Arizona,
+            Michigan, Texas, Florida, New York, and Washington State as the
+            states with the highest levels of admissions. While some of these
+            states' high admissions are easily explained by proximity to other
+            countries, others, such as Michigan and Washington, are more
+            perplexing. Although New Mexico is also close to Mexico, it has a
+            significantly lower population than Arizona and Texas, which could
+            be a contributing factor. This choropleth map raises questions about
+            state policies towards immigrants and offers insights into how
+            different states handle the influx of nonimmigrants.
           </p>
         </div>
         <div class="row">
           <a href="../index.html" class="btn btn-default btn-sm" role="button"
             >Go back to Main Page</a
           >
-          <a href="viz2.html" class="btn btn-default btn-sm" role="button">Go to previous visualization</a>
-          <a href="viz4.html" class="btn btn-default btn-sm" role="button">Go to next visualization</a>
+          <a href="viz2.html" class="btn btn-default btn-sm" role="button"
+            >Go to previous visualization</a
+          >
+          <a href="viz4.html" class="btn btn-default btn-sm" role="button"
+            >Go to next visualization</a
+          >
         </div>
       </div>
     </div>
@@ -219,7 +232,11 @@
             })
             .on("mouseover", function (d, i) {
               tooltip
-                .html(`${d.properties.name}: ${Number(d.properties.value).toLocaleString()}`)
+                .html(
+                  `${d.properties.name}: ${Number(
+                    d.properties.value
+                  ).toLocaleString()}`
+                )
                 .style("visibility", "visible");
               svg.selectAll("path").attr("opacity", 0.4);
               d3.select(this).attr("opacity", 1);

@@ -85,11 +85,20 @@
     </div>
     <div class="container">
       <div class="row">
+        <button
+          type="button"
+          onclick="window.location.href='/views/story.html'"
+          class="our-story btn btn-primary btn-lg btn-block"
+        >
+          Click Here to View Our Story!
+        </button>
+      </div>
+      <div class="row">
         <p class="lead" style="font-size: 4rem">Visualization 5</p>
         <h1 id="title">
-          Which US states are nonimmigrants entering the US from?
+          Which Countries have the Highest Admission Rates into the US?
         </h1>
-        <h4>About Dataset Used for Choropleth:</h4>
+        <h4>About Dataset Used for Bubble Chart:</h4>
         <p class="larger-text">
           Dataset is from Department of Homeland Security. It has the amount of
           admissions of temporary workers and their families in the fiscal years
@@ -110,7 +119,7 @@
             <svg width="1300" height="600"></svg>
           </div>
           <div class="slider-container">
-            <div class="text-center">
+            <div class="text-center" style="padding-right: 2rem;">
               <button id="toggleScaleButton" class="btn btn-primary">
                 Toggle Scale
               </button>
